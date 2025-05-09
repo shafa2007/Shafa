@@ -1,2 +1,0 @@
-# Shafa
-TUGAS MATPIL
