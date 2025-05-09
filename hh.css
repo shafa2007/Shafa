@@ -1,0 +1,74 @@
+/* Buat halaman lebih rapi dan terpusat */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+  }
+  
+  /* Header tengah dan lebih simpel */
+  header {
+    text-align: center;
+    background-color: #0d4b4b;
+    color: white;
+    padding: 30px 20px;
+  }
+  
+  h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  h2 {
+    font-size: 20px;
+    margin-top: 0;
+    color: #d0f0f0;
+  }
+  
+  /* Kontainer utama agar rapi dan tengah */
+  .materi-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px;
+  }
+  
+  /* Semua gambar di dalam materi-container diatur agar tengah */
+  .materi-container img {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  /* Tambahan opsional untuk paragraf dan list agar tidak terlalu mepet */
+  p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  
+  ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+  
+  style>
+    .btn-view {
+      display: inline-block;
+      margin: 30px auto;
+      padding: 12px 24px;
+      background-color: #2563eb;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    .btn-view:hover {
+      background-color: #6e3737;
+    }
+    .btn-container {
+      text-align: center;
+    }
