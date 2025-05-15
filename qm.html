@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis Mikrotik</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f3;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    h1 {
+      background-color: #fcfdff;
+      color: white;
+      padding: 15px;
+    }
+    .quiz-container {
+      margin: 20px auto;
+      width: 80%;
+      max-width: 600px;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .question {
+      font-size: 1.2em;
+      margin-bottom: 15px;
+    }
+    .options label {
+      display: block;
+      background-color: #f8f9fa;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+    .options input {
+      margin-right: 10px;
+    }
+    .btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Kuis Mikrotik</h1>
+
+  <div class="quiz-container" id="quiz-container">
+    <div id="question-1">
+      <div class="question">
+        <p>1. Mikrotik digunakan untuk?</p>
+        <div class="options">
+          <input type="radio" id="q1a1" name="q1" value="incorrect">
+          <label for="q1a1">Membuat dokumen dan presentasi</label>
+          
+          <input type="radio" id="q1a2" name="q1" value="correct">
+          <label for="q1a2">Mengelola jaringan dan koneksi internet</label>
+
+          <input type="radio" id="q1a3" name="q1" value="incorrect">
+          <label for="q1a3">Memutar musik dan video</label>
+        </div>
+        <button class="btn" onclick="nextQuestion(1)">Lanjutkan</button>
+      </div>
+    </div>
+
+    <div id="question-2" style="display: none;">
+      <div class="question">
+        <p>2. Apa fungsi utama dari fitur DHCP Server di Mikrotik?</p>
+        <div class="options">
+          <input type="radio" id="q2a1" name="q2" value="correct">
+          <label for="q2a1">Memberikan IP address secara otomatis ke klien</label>
+
+          <input type="radio" id="q2a2" name="q2" value="incorrect">
+          <label for="q2a2">Mengganti nama Wi-Fi</label>
+
+          <input type="radio" id="q2a3" name="q2" value="incorrect">
+          <label for="q2a3">Mengatur kecerahan layar router</label>
+        </div>
+        <button class="btn" onclick="nextQuestion(2)">Lanjutkan</button>
+      </div>
+    </div>
+
+    <div id="question-3" style="display: none;">
+      <div class="question">
+        <p>3. Tool Winbox pada Mikrotik digunakan untuk?</p>
+        <div class="options">
+          <input type="radio" id="q3a1" name="q3" value="correct">
+          <label for="q3a1">Mengakses dan mengelola Mikrotik secara grafis</label>
+
+          <input type="radio" id="q3a2" name="q3" value="incorrect">
+          <label for="q3a2">Mengedit video jaringan</label>
+
+          <input type="radio" id="q3a3" name="q3" value="incorrect">
+          <label for="q3a3">Memutar musik router</label>
+        </div>
+        <button class="btn" onclick="nextQuestion(3)">Lanjutkan</button>
+      </div>
+    </div>
+
+    <div id="question-4" style="display: none;">
+      <div class="question">
+        <p>4. Apa yang terjadi jika salah konfigurasi firewall di Mikrotik?</p>
+        <div class="options">
+          <input type="radio" id="q4a1" name="q4" value="incorrect">
+          <label for="q4a1">Router akan restart otomatis</label>
+
+          <input type="radio" id="q4a2" name="q4" value="correct">
+          <label for="q4a2">Koneksi internet bisa terputus atau tidak aman</label>
+
+          <input type="radio" id="q4a3" name="q4" value="incorrect">
+          <label for="q4a3">Tidak berpengaruh apa pun</label>
+        </div>
+        <button class="btn" onclick="nextQuestion(4)">Lanjutkan</button>
+      </div>
+    </div>
+
+    <div id="question-5" style="display: none;">
+      <div class="question">
+        <p>5. Untuk membatasi kecepatan internet pengguna di Mikrotik, fitur apa yang digunakan?</p>
+        <div class="options">
+          <input type="radio" id="q5a1" name="q5" value="incorrect">
+          <label for="q5a1">DNS Server</label>
+
+          <input type="radio" id="q5a2" name="q5" value="correct">
+          <label for="q5a2">Simple Queue</label>
+
+          <input type="radio" id="q5a3" name="q5" value="incorrect">
+          <label for="q5a3">Bridge Port</label>
+        </div>
+        <button class="btn" onclick="checkResults()">Periksa Jawaban</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let answers = {
+      q1: '',
+      q2: '',
+      q3: '',
+      q4: '',
+      q5: ''
+    };
+
+    function nextQuestion(n) {
+      answers['q' + n] = document.querySelector('input[name="q' + n + '"]:checked')?.value;
+      document.getElementById('question-' + n).style.display = 'none';
+      document.getElementById('question-' + (n + 1)).style.display = 'block';
+    }
+
+    function checkResults() {
+      answers.q5 = document.querySelector('input[name="q5"]:checked')?.value;
+
+      let correct = 0;
+      for (let i = 1; i <= 5; i++) {
+        if (answers['q' + i] === 'correct') correct++;
+      }
+
+      alert(`Kamu menjawab dengan benar ${correct} dari 5 soal.`);
+    }
+  </script>
+
+</body>
+</html>

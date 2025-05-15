@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis Perakitan Komputer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    h1 {
+      background-color: #ffffff;
+      color: white;
+      padding: 15px;
+    }
+    .quiz-container {
+      margin: 20px auto;
+      width: 90%;
+      max-width: 600px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .question {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+    .options label {
+      display: block;
+      text-align: left;
+      padding: 10px;
+      background-color: #e5e7eb;
+      margin: 10px 0;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .options input {
+      margin-right: 10px;
+    }
+    .btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Kuis Perakitan Komputer</h1>
+
+<div class="quiz-container" id="quiz-container">
+
+  <div id="question-1">
+    <div class="question">
+      <p>1. Apa fungsi utama dari motherboard dalam komputer?</p>
+      <div class="options">
+        <input type="radio" id="q1a" name="q1" value="correct">
+        <label for="q1a">Menghubungkan dan mengatur semua komponen komputer</label>
+
+        <input type="radio" id="q1b" name="q1" value="incorrect">
+        <label for="q1b">Menyimpan file dan dokumen</label>
+
+        <input type="radio" id="q1c" name="q1" value="incorrect">
+        <label for="q1c">Menampilkan gambar ke monitor</label>
+      </div>
+      <button class="btn" onclick="nextQuestion(1)">Lanjutkan</button>
+    </div>
+  </div>
+
+  <div id="question-2" style="display: none;">
+    <div class="question">
+      <p>2. Komponen apa yang disebut sebagai "otak" komputer?</p>
+      <div class="options">
+        <input type="radio" id="q2a" name="q2" value="incorrect">
+        <label for="q2a">Hard disk</label>
+
+        <input type="radio" id="q2b" name="q2" value="correct">
+        <label for="q2b">Prosesor (CPU)</label>
+
+        <input type="radio" id="q2c" name="q2" value="incorrect">
+        <label for="q2c">Kartu grafis</label>
+      </div>
+      <button class="btn" onclick="nextQuestion(2)">Lanjutkan</button>
+    </div>
+  </div>
+
+  <div id="question-3" style="display: none;">
+    <div class="question">
+      <p>3. Slot RAM di motherboard digunakan untuk memasang...</p>
+      <div class="options">
+        <input type="radio" id="q3a" name="q3" value="correct">
+        <label for="q3a">Memori sementara komputer</label>
+
+        <input type="radio" id="q3b" name="q3" value="incorrect">
+        <label for="q3b">Kabel jaringan</label>
+
+        <input type="radio" id="q3c" name="q3" value="incorrect">
+        <label for="q3c">CD/DVD</label>
+      </div>
+      <button class="btn" onclick="nextQuestion(3)">Lanjutkan</button>
+    </div>
+  </div>
+
+  <div id="question-4" style="display: none;">
+    <div class="question">
+      <p>4. Port SATA digunakan untuk menghubungkan...</p>
+      <div class="options">
+        <input type="radio" id="q4a" name="q4" value="incorrect">
+        <label for="q4a">Monitor dan mouse</label>
+
+        <input type="radio" id="q4b" name="q4" value="incorrect">
+        <label for="q4b">Prosesor dan kipas</label>
+
+        <input type="radio" id="q4c" name="q4" value="correct">
+        <label for="q4c">Hard disk atau SSD ke motherboard</label>
+      </div>
+      <button class="btn" onclick="nextQuestion(4)">Lanjutkan</button>
+    </div>
+  </div>
+
+  <div id="question-5" style="display: none;">
+    <div class="question">
+      <p>5. Mengapa penting untuk merakit komputer sendiri?</p>
+      <div class="options">
+        <input type="radio" id="q5a" name="q5" value="incorrect">
+        <label for="q5a">Agar komputer lebih berat</label>
+
+        <input type="radio" id="q5b" name="q5" value="correct">
+        <label for="q5b">Agar bisa menyesuaikan spesifikasi sesuai kebutuhan dan hemat biaya</label>
+
+        <input type="radio" id="q5c" name="q5" value="incorrect">
+        <label for="q5c">Agar komputer bisa berjalan tanpa listrik</label>
+      </div>
+      <button class="btn" onclick="checkResults()">Selesai</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let answers = {};
+
+  function nextQuestion(n) {
+    answers['q' + n] = document.querySelector('input[name="q' + n + '"]:checked')?.value;
+    document.getElementById('question-' + n).style.display = 'none';
+    document.getElementById('question-' + (n + 1)).style.display = 'block';
+  }
+
+  function checkResults() {
+    answers.q5 = document.querySelector('input[name="q5"]:checked')?.value;
+    let correct = 0;
+    for (let i = 1; i <= 5; i++) {
+      if (answers['q' + i] === 'correct') correct++;
+    }
+    alert(`Kamu menjawab benar ${correct} dari 5 soal tentang Perakitan Komputer!`);
+  }
+</script>
+
+</body>
+</html>
